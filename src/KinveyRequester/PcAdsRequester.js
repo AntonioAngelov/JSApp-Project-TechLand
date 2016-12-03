@@ -12,12 +12,12 @@ let PcAdsRequester = (function () {
         });
     }
 
-    function createPcAd(ad) {
+    function createPcAd(imageURL,title,description,phoneNumber) {
         return $.ajax({
             method: "POST",
             url: baseUrl + "appdata/" + appKey + "/pcAds",
             headers: getKinveyUserAuthHeaders(),
-            data: ad
+            data: {imageURL,title,description,phoneNumber}
         });
     }
 

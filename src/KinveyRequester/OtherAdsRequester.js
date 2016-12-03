@@ -12,12 +12,12 @@ let OtherAdsRequester = (function () {
         });
     }
 
-    function createAd(ad) {
+    function createAd(imageURL,title,description,phoneNumber) {
         return $.ajax({
             method: "POST",
             url: baseUrl + "appdata/" + appKey + "/otherAds",
             headers: getKinveyUserAuthHeaders(),
-            data: ad
+            data: {imageURL,title,description,phoneNumber}
         });
     }
 

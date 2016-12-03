@@ -43,8 +43,8 @@ export default class CreateBookView extends Component {
     submitForm(event) {
         event.preventDefault();
         this.props.onsubmit(
-            this.titleField.value,
             this.imageField.value,
+            this.titleField.value,
             this.descriptionField.value,
             this.phoneNumberField.value,
             this.sectionField.value

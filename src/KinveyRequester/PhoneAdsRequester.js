@@ -12,12 +12,12 @@ let PhoneAdsRequester = (function () {
         });
     }
 
-    function createPhoneAd(ad) {
+    function createPhoneAd(imageURL,title,description,phoneNumber) {
         return $.ajax({
             method: "POST",
             url: baseUrl + "appdata/" + appKey + "/phoneAds",
             headers: getKinveyUserAuthHeaders(),
-            data: ad
+            data: {imageURL,title,description,phoneNumber}
         });
     }
 
