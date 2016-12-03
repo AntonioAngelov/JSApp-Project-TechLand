@@ -11,24 +11,24 @@ let PcAdsRequester = (function () {
     function loadPcAds() {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books',
+            url: baseUrl + "appdata/" + appKey +  '/pcAds',
             headers: getKinveyUserAuthHeaders()
         });
     }
 
-    function createPcAd(book) {
+    function createPcAd(imageURL,title,phoneDescription,phoneNumber) {
         return $.ajax({
             method: "POST",
-            url: baseUrl + "appdata/" + appKey + "/books",
+            url: baseUrl + "appdata/" + appKey + "/pcAds",
             headers: getKinveyUserAuthHeaders(),
-            data: book
+            data: {imageURL,title,phoneDescription,phoneNumber}
         });
     }
 
     function findPcAdById(bookId) {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + bookId,
             headers: getKinveyUserAuthHeaders()
         });
     }
@@ -36,7 +36,7 @@ let PcAdsRequester = (function () {
     function editPcAd(bookId, title, author, description) {
         return $.ajax({
             method: "PUT",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + bookId,
             headers: getKinveyUserAuthHeaders(),
             data:{title, author, description}
         });
@@ -45,7 +45,7 @@ let PcAdsRequester = (function () {
     function deletePcAdById(bookId) {
         return $.ajax({
             method: "DELETE",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + bookId,
             headers: getKinveyUserAuthHeaders(),
         });
     }

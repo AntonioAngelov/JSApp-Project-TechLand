@@ -32,7 +32,7 @@ export default class OtherAdsView extends Component {
         );
     }
 
-    /*getActions(phoneAds, userId) {
+   /* getActions(phoneAds, userId) {
      if (phoneAds._acl.creator === userId)
      return (
      <td>

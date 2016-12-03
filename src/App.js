@@ -14,6 +14,7 @@ import RegisterView from './Views/RegisterView'
 import PhoneAdsView from './Views/PhoneAdsView'
 import PcAdsView from './Views/PcAdsView'
 import OtherAdsView from './Views/OtherAdsView'
+import CreateAdView from './Views/CreateAdView'
 
 //Importing Kinvey Requesters
 import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
@@ -42,7 +43,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                         phonesClicked={this.showPhonesView.bind(this)}
                         pcsClicked={this.showPcsView.bind(this)}
                         otherClicked={this.showOthersView.bind(this)}
-                        // createAdClicked={this.showCreateAdView.bind(this)}
+                        createAdClicked={this.showCreateAdView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
                     />
                     <div id="loadingBox">Loading ...</div>
@@ -211,6 +212,46 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
 
         this.showHomeView();
     }
+     //Create View
+        showCreateAdView() {
+            this.showView(<CreateAdView onsubmit={this.createAd.bind(this)} />);
+        }
+
+        createAd(image, title, description,phoneNumber,section) {
+            if(section==='phoneAds')
+            {
+                PhoneAdsRequester.createPhoneAd(image,title,description,phoneNumber)
+                    .then(createPhoneAdSuccess.bind(this));
+
+                function createPhoneAdSuccess()
+                {
+                    this.showPhonesView();
+                    this.showInfo("Ad created");
+                }
+           }
+
+          else if(section==='pcAds')
+            {
+                PcAdsRequester.createPcAd(image,title,description,phoneNumber)
+                    .then(createPcAdSuccess.bind(this));
+
+                function createPcAdSuccess()
+                {
+                    this.showPcsView();
+                    this.showInfo("Ad created");
+                }
+            }
+            else {
+                OtherAdsRequester.createAd(image,title,description,phoneNumber)
+                    .then(createOtherAdSuccess.bind(this));
+                function createOtherAdSuccess()
+                {
+                    this.showOthersView();
+                    this.showInfo("Ad created");
+                }
+            }
+        }
+
 
 
 

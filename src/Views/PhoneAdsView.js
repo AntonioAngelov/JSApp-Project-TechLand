@@ -4,7 +4,7 @@ export default class PhoneAdsView extends Component {
     render() {
         let phoneAdsRows = this.props.phoneAds.map(phoneAds =>
             <tr key={phoneAds._id}>
-                <td><img src={phoneAds.imageURL}></img></td>
+                <td><img src={phoneAds.imageURL}/></td>
                 <td>{phoneAds.title}</td>
                 <td>{phoneAds.phoneDescription}</td>
                 <td>{phoneAds.phoneNumber}</td>
