@@ -22,7 +22,7 @@ export default class DeleteAdView extends Component {
                 </label>
                 <label>
                     <div>Phone Number:</div>
-                    <input type="text" name="phoneNumber" required
+                    <input type="text" name="phoneNumber" disabled
                            defaultValue={this.props.phoneNumber}/>
                 </label>
                 <div>

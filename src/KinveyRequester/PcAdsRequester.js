@@ -3,49 +3,45 @@ import $ from 'jquery'
 let PcAdsRequester = (function () {
     const baseUrl = "https://baas.kinvey.com/";
     const appKey = "kid_r1jz3egXg";
-    const appSecret = "3f96351ca9324ff6a85eb54815bc5e95";
-    const kinveyAppAuthHeaders = {
-        'Authorization': "Basic " + btoa(appKey + ":" + appSecret),
-    };
 
     function loadPcAds() {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books',
+            url: baseUrl + "appdata/" + appKey +  '/pcAds',
             headers: getKinveyUserAuthHeaders()
         });
     }
 
-    function createPcAd(book) {
+    function createPcAd(ad) {
         return $.ajax({
             method: "POST",
-            url: baseUrl + "appdata/" + appKey + "/books",
+            url: baseUrl + "appdata/" + appKey + "/pcAds",
             headers: getKinveyUserAuthHeaders(),
-            data: book
+            data: ad
         });
     }
 
-    function findPcAdById(bookId) {
+    function findPcAdById(adId) {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + adId,
             headers: getKinveyUserAuthHeaders()
         });
     }
 
-    function editPcAd(bookId, title, author, description) {
+    function editPcAd(adId, title, imageUrl, description, phoneNumber) {
         return $.ajax({
             method: "PUT",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + adId,
             headers: getKinveyUserAuthHeaders(),
-            data:{title, author, description}
+            data:{title, description, imageUrl, phoneNumber}
         });
     }
 
-    function deletePcAdById(bookId) {
+    function deletePcAdById(adId) {
         return $.ajax({
             method: "DELETE",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/pcAds/' + adId,
             headers: getKinveyUserAuthHeaders(),
         });
     }

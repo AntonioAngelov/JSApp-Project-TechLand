@@ -14,6 +14,8 @@ import RegisterView from './Views/RegisterView'
 import PhoneAdsView from './Views/PhoneAdsView'
 import PcAdsView from './Views/PcAdsView'
 import OtherAdsView from './Views/OtherAdsView'
+import EditAdView from './Views/EditAdView'
+import DeleteAdView from './Views/DeleteAdView'
 
 //Importing Kinvey Requesters
 import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
@@ -142,65 +144,244 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             this.showHomeView();
         }
     }
-        showRegisterView() {
-            this.showView(<RegisterView onsubmit={this.register.bind(this)} />);
+    showRegisterView() {
+        this.showView(<RegisterView onsubmit={this.register.bind(this)} />);
+    }
+
+    register(username, password) {
+        LoginRegisterRequester.registerUser(username, password)
+            .then(registerSuccess.bind(this));
+
+        function registerSuccess(userInfo) {
+            this.saveAuthInSession(userInfo);
+            this.showBooksView();
+            this.showInfo("User registration successful.");
         }
+    }
 
-        register(username, password) {
-            LoginRegisterRequester.registerUser(username, password)
-                .then(registerSuccess.bind(this));
+    //show PhoneAdsView
+    showPhonesView() {
+        PhoneAdsRequester.loadPhoneAds()
+            .then(loadPhoneAdsSuccess.bind(this));
 
-            function registerSuccess(userInfo) {
-                this.saveAuthInSession(userInfo);
-                this.showBooksView();
-                this.showInfo("User registration successful.");
-            }
+        function loadPhoneAdsSuccess(phoneAds) {
+            this.showInfo("Phone adverts loaded.");
+            this.showView(
+                <PhoneAdsView
+                    phoneAds={phoneAds}
+                    onedit={this.preparePhonesAdForEdit.bind(this)}
+                    ondelete={this.confirmDeletePhonesAd.bind(this)}
+                />
+            );
         }
-        //show PhoneAdsView
-        showPhonesView() {
-            PhoneAdsRequester.loadPhoneAds()
-                .then(loadPhoneAdsSuccess.bind(this));
+    }
 
-            function loadPhoneAdsSuccess(phoneAds) {
-                this.showInfo("PhoneAds loaded.");
-                this.showView(
-                    <PhoneAdsView
-                        phoneAds={phoneAds}
-                        userId={this.state.userId}
-                    />
-                );
-            }
+    preparePhonesAdForEdit(adId){
+        PhoneAdsRequester.findPhoneAdById(adId)
+            .then(loadPhonesAdForEditSuccess.bind(this));
+
+        function loadPhonesAdForEditSuccess(adInfo) {
+            this.showView(
+                <EditAdView
+                    onsubmit={this.editPhonesAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
         }
-        //show PcAdsView
-        showPcsView() {
-            PcAdsRequester.loadPcAds()
-                .then(loadPcAdsSuccess.bind(this));
+    }
 
-            function loadPcAdsSuccess(pcAds) {
-                this.showInfo("PcAds loaded.");
-                this.showView(
-                    <PcAdsView
-                        pcAds={pcAds}
-                        userId={this.state.userId}
-                    />
-                );
-            }
+    editPhonesAd(adId, title, imageUrl, description, phoneNumber){
+        PhoneAdsRequester.editPhoneAd(adId, title, imageUrl, description, phoneNumber)
+            .then(editPhoneAdSuccess.bind(this));
+
+        function editPhoneAdSuccess() {
+            this.showPhonesView();
+            this.showInfo("Phone advert edited.");
         }
-        showOthersView(){
-            OtherAdsRequester.loadAds()
-                .then(loadOtherAdsSuccess.bind(this));
+    }
 
-            function loadOtherAdsSuccess(otherAds) {
-                this.showInfo("OtherAds loaded.");
-                this.showView(
-                    <OtherAdsView
-                        otherAds={otherAds}
-                        userId={this.state.userId}
-                    />
-                );
-            }
+
+
+    confirmDeletePhonesAd(adId) {
+        PhoneAdsRequester.findPhoneAdById(adId)
+            .then(loadPhonesAdSuccess.bind(this));
+
+        function loadPhonesAdSuccess(adInfo) {
+            this.showView(
+                <DeleteAdView
+                    onsubmit={this.deletePhonesAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
         }
+    }
 
+    deletePhonesAd(adId){
+        PhoneAdsRequester.deletePhoneAdById(adId)
+            .then(deletePhonesAdSuccess.bind(this));
+
+        function deletePhonesAdSuccess() {
+            this.showPhonesView();
+            this.showInfo("Phones advert deleted.");
+        }
+    }
+
+    //show PcAdsView
+    showPcsView() {
+        PcAdsRequester.loadPcAds()
+            .then(loadPcAdsSuccess.bind(this));
+
+        function loadPcAdsSuccess(pcAds) {
+            this.showInfo("PcAds loaded.");
+            this.showView(
+                <PcAdsView
+                    pcAds={pcAds}
+                    onedit={this.preparePcAdForEdit.bind(this)}
+                    ondelete={this.confirmDeletePcAd.bind(this)}
+                />
+            );
+        }
+    }
+
+    preparePcAdForEdit(adId){
+        PcAdsRequester.findPcAdById(adId)
+            .then(loadPcAdForEditSuccess.bind(this));
+
+        function loadPcAdForEditSuccess(adInfo) {
+            this.showView(<EditAdView
+                    onsubmit={this.editPcAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
+        }
+    }
+
+    editPcAd(adId, title, imageUrl, description, phoneNumber){
+        PcAdsRequester.editPcAd(adId, title, imageUrl, description, phoneNumber)
+            .then(editPcAdSuccess.bind(this));
+
+        function editPcAdSuccess() {
+            this.showPcsView();
+            this.showInfo("Pc/laptop advert edited.");
+        }
+    }
+
+
+
+    confirmDeletePcAd(adId) {
+        PcAdsRequester.findPcAdById(adId)
+            .then(loadPcAdSuccess.bind(this));
+
+        function loadPcAdSuccess(adInfo) {
+            this.showView(
+                <DeleteAdView
+                    onsubmit={this.deletePcAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
+        }
+    }
+
+    deletePcAd(adId){
+        PcAdsRequester.deletePcAdById(adId)
+            .then(deletePcAdSuccess.bind(this));
+
+        function deletePcAdSuccess() {
+            this.showPcsView();
+            this.showInfo("Pc/laptop advert deleted.");
+        }
+    }
+
+    //show OthersView
+    showOthersView(){
+        OtherAdsRequester.loadAds()
+            .then(loadOtherAdsSuccess.bind(this));
+
+        function loadOtherAdsSuccess(otherAds) {
+            this.showInfo("OtherAds loaded.");
+            this.showView(
+                <OtherAdsView
+                    otherAds={otherAds}
+                    onedit={this.prepareOtherAdForEdit.bind(this)}
+                    ondelete={this.confirmDeleteOtherAd.bind(this)}
+                />
+            );
+        }
+    }
+
+    prepareOtherAdForEdit(adId){
+        OtherAdsRequester.findAdById(adId)
+            .then(loadAdForEditSuccess.bind(this));
+
+        function loadAdForEditSuccess(adInfo) {
+            this.showView(<EditAdView
+                    onsubmit={this.editAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
+        }
+    }
+
+    editAd(adId, title, imageUrl, description, phoneNumber){
+        OtherAdsRequester.editAd(adId, title, imageUrl, description, phoneNumber)
+            .then(editAdSuccess.bind(this));
+
+        function editAdSuccess() {
+            this.showOthersView();
+            this.showInfo("Advert edited.");
+        }
+    }
+
+
+    confirmDeleteOtherAd(adId) {
+        OtherAdsRequester.findAdById(adId)
+            .then(loadAdSuccess.bind(this));
+
+        function loadAdSuccess(adInfo) {
+            this.showView(
+                <DeleteAdView
+                    onsubmit={this.deleteAd.bind(this)}
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
+                />
+            );
+        }
+    }
+
+    deleteAd(adId){
+        OtherAdsRequester.deleteAdById(adId)
+            .then(deleteAdSuccess.bind(this));
+
+        function deleteAdSuccess() {
+            this.showOthersView();
+            this.showInfo("Advert deleted.");
+        }
+    }
+
+    //logout user
     logout(){
         sessionStorage.clear();
 
@@ -211,7 +392,6 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
 
         this.showHomeView();
     }
-
 
 
 

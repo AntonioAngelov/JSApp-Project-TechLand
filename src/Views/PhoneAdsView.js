@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 export default class PhoneAdsView extends Component {
     render() {
-        let phoneAdsRows = this.props.phoneAds.map(phoneAds =>
-            <tr key={phoneAds._id}>
-                <td><img src={phoneAds.imageURL}></img></td>
-                <td>{phoneAds.title}</td>
-                <td>{phoneAds.phoneDescription}</td>
-                <td>{phoneAds.phoneNumber}</td>
-
+        let phoneAdsRows = this.props.phoneAds.map(phoneAd =>
+            <tr key={phoneAd._id}>
+                <td><img src={phoneAd.imageURL} role="presentation"></img></td>
+                <td>{phoneAd.title}</td>
+                <td>{phoneAd.description}</td>
+                <td>{phoneAd.phoneNumber}</td>
+                {this.getActions(phoneAd)}
             </tr>
         );
 
@@ -33,19 +33,19 @@ export default class PhoneAdsView extends Component {
         );
     }
 
-   /*getActions(phoneAds, userId) {
-        if (phoneAds._acl.creator === userId)
+   getActions(phoneAd) {
+        if (phoneAd._acl.creator === sessionStorage.getItem('userId'))
             return (
                 <td>
                     <input type="button" value="Edit"
-                           onClick={this.props.editPhoneAdClicked.bind(this, phoneAds._id)} />
+                           onClick={this.props.onedit.bind(this, phoneAd._id)} />
                     &nbsp;
                     <input type="button" value="Delete"
-                           onClick={this.props.deletePhoneAdClicked.bind(this, phoneAds._id)} />
+                           onClick={this.props.ondelete.bind(this, phoneAd._id)} />
                 </td>
             );
         else
             return <td></td>;
-    }*/
+    }
 }
 

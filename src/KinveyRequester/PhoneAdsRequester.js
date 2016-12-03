@@ -3,10 +3,6 @@ import $ from 'jquery'
 let PhoneAdsRequester = (function () {
     const baseUrl = "https://baas.kinvey.com/";
     const appKey = "kid_r1jz3egXg";
-    const appSecret = "3f96351ca9324ff6a85eb54815bc5e95";
-    const kinveyAppAuthHeaders = {
-        'Authorization': "Basic " + btoa(appKey + ":" + appSecret),
-    };
 
     function loadPhoneAds() {
         return $.ajax({
@@ -16,36 +12,36 @@ let PhoneAdsRequester = (function () {
         });
     }
 
-    function createPhoneAd(book) {
+    function createPhoneAd(ad) {
         return $.ajax({
             method: "POST",
             url: baseUrl + "appdata/" + appKey + "/phoneAds",
             headers: getKinveyUserAuthHeaders(),
-            data: book
+            data: ad
         });
     }
 
-    function findPhoneAdById(bookId) {
+    function findPhoneAdById(adId) {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + adId,
             headers: getKinveyUserAuthHeaders()
         });
     }
 
-    function editPhoneAd(bookId, title, author, description) {
+    function editPhoneAd(adId, title, imageUrl, description, phoneNumber) {
         return $.ajax({
             method: "PUT",
-            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + adId,
             headers: getKinveyUserAuthHeaders(),
-            data:{title, author, description}
+            data:{title, description, imageUrl, phoneNumber}
         });
     }
 
-    function deletePhoneAdById(bookId) {
+    function deletePhoneAdById(adId) {
         return $.ajax({
             method: "DELETE",
-            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + adId,
             headers: getKinveyUserAuthHeaders(),
         });
     }
