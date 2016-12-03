@@ -10,9 +10,16 @@ import Footer from './Components/Footer'
 //Importing Views
 import HomeView from './Views/HomeView'
 import LoginView from './Views/LoginView'
+import RegisterView from './Views/RegisterView'
+import PhoneAdsView from './Views/PhoneAdsView'
+import PcAdsView from './Views/PcAdsView'
+import OtherAdsView from './Views/OtherAdsView'
 
 //Importing Kinvey Requesters
 import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
+import PhoneAdsRequester from './KinveyRequester/PhoneAdsRequester'
+import PcAdsRequester from './KinveyRequester/PcAdsRequester'
+import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
 
     export default class App extends Component {
     constructor(props){
@@ -31,10 +38,10 @@ import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
                         username={this.state.username}
                         homeClicked={this.showHomeView.bind(this)}
                         loginClicked={this.showLoginView.bind(this)}
-                        // registerClicked={this.showRegisterView.bind(this)}
-                        // phonesClicked={this.showPhonesView.bind(this)}
-                        // pcsClicked={this.showPcsView.bind(this)}
-                        // otherClicked={this.showOthersView.bind(this)}
+                        registerClicked={this.showRegisterView.bind(this)}
+                        phonesClicked={this.showPhonesView.bind(this)}
+                        pcsClicked={this.showPcsView.bind(this)}
+                        otherClicked={this.showOthersView.bind(this)}
                         // createAdClicked={this.showCreateAdView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
                     />
@@ -135,6 +142,64 @@ import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
             this.showHomeView();
         }
     }
+        showRegisterView() {
+            this.showView(<RegisterView onsubmit={this.register.bind(this)} />);
+        }
+
+        register(username, password) {
+            LoginRegisterRequester.registerUser(username, password)
+                .then(registerSuccess.bind(this));
+
+            function registerSuccess(userInfo) {
+                this.saveAuthInSession(userInfo);
+                this.showBooksView();
+                this.showInfo("User registration successful.");
+            }
+        }
+        //show PhoneAdsView
+        showPhonesView() {
+            PhoneAdsRequester.loadPhoneAds()
+                .then(loadPhoneAdsSuccess.bind(this));
+
+            function loadPhoneAdsSuccess(phoneAds) {
+                this.showInfo("PhoneAds loaded.");
+                this.showView(
+                    <PhoneAdsView
+                        phoneAds={phoneAds}
+                        userId={this.state.userId}
+                    />
+                );
+            }
+        }
+        //show PcAdsView
+        showPcsView() {
+            PcAdsRequester.loadPcAds()
+                .then(loadPcAdsSuccess.bind(this));
+
+            function loadPcAdsSuccess(pcAds) {
+                this.showInfo("PcAds loaded.");
+                this.showView(
+                    <PcAdsView
+                        pcAds={pcAds}
+                        userId={this.state.userId}
+                    />
+                );
+            }
+        }
+        showOthersView(){
+            OtherAdsRequester.loadAds()
+                .then(loadOtherAdsSuccess.bind(this));
+
+            function loadOtherAdsSuccess(otherAds) {
+                this.showInfo("OtherAds loaded.");
+                this.showView(
+                    <OtherAdsView
+                        otherAds={otherAds}
+                        userId={this.state.userId}
+                    />
+                );
+            }
+        }
 
     logout(){
         sessionStorage.clear();

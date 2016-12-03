@@ -11,7 +11,7 @@ let PhoneAdsRequester = (function () {
     function loadPhoneAds() {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books',
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds',
             headers: getKinveyUserAuthHeaders()
         });
     }
@@ -19,7 +19,7 @@ let PhoneAdsRequester = (function () {
     function createPhoneAd(book) {
         return $.ajax({
             method: "POST",
-            url: baseUrl + "appdata/" + appKey + "/books",
+            url: baseUrl + "appdata/" + appKey + "/phoneAds",
             headers: getKinveyUserAuthHeaders(),
             data: book
         });
@@ -28,7 +28,7 @@ let PhoneAdsRequester = (function () {
     function findPhoneAdById(bookId) {
         return $.ajax({
             method: "GET",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
             headers: getKinveyUserAuthHeaders()
         });
     }
@@ -36,7 +36,7 @@ let PhoneAdsRequester = (function () {
     function editPhoneAd(bookId, title, author, description) {
         return $.ajax({
             method: "PUT",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
             headers: getKinveyUserAuthHeaders(),
             data:{title, author, description}
         });
@@ -45,7 +45,7 @@ let PhoneAdsRequester = (function () {
     function deletePhoneAdById(bookId) {
         return $.ajax({
             method: "DELETE",
-            url: baseUrl + "appdata/" + appKey +  '/books/' + bookId,
+            url: baseUrl + "appdata/" + appKey +  '/phoneAds/' + bookId,
             headers: getKinveyUserAuthHeaders(),
         });
     }
