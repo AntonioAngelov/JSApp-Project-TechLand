@@ -1,23 +1,27 @@
 .navigation-bar {
-    background: #DDD;
+    background: #0052cc;
     text-align: center;
-    padding: 10px 5px;
-    line-height: 1.5;
-    border-radius: 3px;
+    padding: 10px 10px 10px 10px;
+    line-height: 2.5;
+    border-radius: 30px;
     overflow: auto;
+    font-weight: bold
 }
 
 .navigation-bar a {
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 5px 20px;
     border-radius: 5px;
+    color: white;
+    font-style: ;
 }
 
 .navigation-bar a:hover {
-    background: #BBB;
+    background: #bfbfbf;
 }
 
 .navigation-bar .loggedInUser {
     float: right;
-    margin-right: 10px;
+    color: white;
+    margin-right: 50px;
 }
