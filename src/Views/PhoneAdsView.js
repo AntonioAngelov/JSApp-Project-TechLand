@@ -14,13 +14,13 @@ export default class PhoneAdsView extends Component {
 
         return (
             <div className="phoneAds-view">
-                <h1>PhoneAds</h1>
+                <h1>Phone Adverts</h1>
                 <table className="phoneAds-table">
                     <thead>
                     <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Phone Description</th>
+                        <th>Specification</th>
                         <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>

@@ -25,10 +25,31 @@
 #main {
   margin: 0 10px 20px 10px;
 }
+img {
+  height: 40px;
+  width: 80px;
+}
+table {
+  margin-left:auto;
+  margin-right:auto;
+  width: 80%;
+}
+input[type=button] {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+input[type=button]:hover {
+  background-color: #ccff99;
+}
 
 table th {
   background: #DDD;
   padding: 10px;
+  height:30px;
+  border-radius:5px 5px 5px 5px;
+  border-bottom-width: 5px;
+  border-bottom-style:solid;
 }
 
 table td {
@@ -69,6 +90,8 @@ form div{
 div h1{
   text-align: center;
   font-size: 300%;
+  text-transform: uppercase;
+  text-shadow: 0 3px 3px black;
 }
 
 div p{

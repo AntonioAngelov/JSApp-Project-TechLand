@@ -4,4 +4,7 @@
     color: white;
     padding: 5px;
     font-size: 0.8em;
+    position:fixed;
+    width: 99.3%;
+    bottom: 0;
 }

@@ -14,13 +14,13 @@ export default class OtherAdsView extends Component {
 
         return (
             <div className="otherAdsAds-view">
-                <h1>Other Ads</h1>
+                <h1>Other Adverts</h1>
                 <table className="otherAdsAds-table">
                     <thead>
                     <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Phone Description</th>
+                        <th>Specification</th>
                         <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>

@@ -14,13 +14,13 @@ export default class PcAdsView extends Component {
 
         return (
             <div className="pcAds-view">
-                <h1>Pc Ads</h1>
+                <h1>PC Adverts</h1>
                 <table className="pcAds-table">
                     <thead>
                     <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Phone Description</th>
+                        <th>Specification</th>
                         <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>
