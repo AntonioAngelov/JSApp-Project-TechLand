@@ -7,7 +7,7 @@ export default class EditAdView extends Component {
                 <h1>Edit Ad</h1>
                 <label>
                     <div>Image:</div>
-                    <input type="text" name="image" disabled
+                    <input type="text" name="image" required
                            defaultValue={this.props.imageURL}
                            ref={e => this.imageField = e}/>
                 </label>
@@ -19,7 +19,7 @@ export default class EditAdView extends Component {
                 </label>
                 <label>
                     <div>Description:</div>
-                    <textarea name="description" rows="10"
+                    <textarea name="description" rows="10" required
                               defaultValue={this.props.description}
                               ref={e => this.descriptionField = e} />
                 </label>

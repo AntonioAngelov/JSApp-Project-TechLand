@@ -25,12 +25,12 @@ export default class CreateBookView extends Component {
                 </label>
                 <label>
                     <div>Description:</div>
-                    <input type="text" name="addDescription" required
+                    <textarea type="text" name="addDescription" rows="7" required
                            ref={e => this.descriptionField = e} />
                 </label>
                 <label>
                     <div>Phone Number:</div>
-                    <textarea name="phoneNumber" rows="10"
+                    <input type="text" name="phoneNumber"
                               ref={e => this.phoneNumberField = e} />
                 </label>
                 <div>

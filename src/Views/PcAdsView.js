@@ -37,15 +37,20 @@ export default class PcAdsView extends Component {
      if (pcAd._acl.creator === sessionStorage.getItem('userId'))
      return (
      <td>
-     <input type="button" value="Edit"
-     onClick={this.props.onedit.bind(this, pcAd._id)} />
-     &nbsp;
-     <input type="button" value="Delete"
-     onClick={this.props.ondelete.bind(this, pcAd._id)} />
-     </td>
-     );
+         <input type="button" value="See More"
+                onClick={this.props.onseemore.bind(this, pcAd._id)} />
+         &nbsp;
+         <input type="button" value="Edit"
+                onClick={this.props.onedit.bind(this, pcAd._id)} />
+         &nbsp;
+         <input type="button" value="Delete"
+                onClick={this.props.ondelete.bind(this, pcAd._id)} />
+     </td>);
      else
-     return <td></td>;
+     return(<td>
+         <input type="button" value="See More"
+                onClick={this.props.onseemore.bind(this, pcAd._id)} />
+     </td>);
      }
 }
 
