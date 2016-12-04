@@ -79,6 +79,97 @@ table td {
   box-shadow: 0 0 5px 1px #969696;
 }
 
+.edit-ad-form input{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+.edit-ad-form input:focus,
+.edit-ad-form input.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.edit-ad-form textarea{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+.edit-ad-form textarea:focus,
+.edit-ad-form textarea.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.edit-ad-form label div{
+  font-size: 20px;
+  padding: 10px 0px 15px 0px;
+}
+
+.create-ad-form input{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+.create-ad-form input:focus,
+.create-ad-form input.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.create-ad-form textarea{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+.create-ad-form textarea:focus,
+.create-ad-form textarea.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.create-ad-form select {
+  border: 0 none;
+  color: black;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 10px;
+  width: 200px;
+  *width: 350px;
+  *background: #58B14C;
+  text-align-last:center;
+}
+
+.create-ad-form label div{
+  font-size: 20px;
+  padding: 10px 0px 15px 0px;
+}
+
+
+.delete-ad-form input{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+
+.delete-ad-form label div{
+  font-size: 20px;
+  padding: 10px 0px 15px 0px;
+}
+
+.delete-ad-form textarea{
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+
 form {
   text-align: center;
 }

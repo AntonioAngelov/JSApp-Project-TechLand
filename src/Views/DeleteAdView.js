@@ -16,7 +16,7 @@ export default class DeleteAdView extends Component {
                            defaultValue={this.props.title} />
                 </label>
                 <label>
-                    <div>Description:</div>
+                    <div>Specifications:</div>
                     <textarea name="description" rows="10" disabled
                               defaultValue={this.props.description} />
                 </label>
