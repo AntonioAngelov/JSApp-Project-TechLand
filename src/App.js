@@ -506,6 +506,15 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                         userPhoneAds={userPhonesAds[0]}
                         userPcAds={userPcAds[0]}
                         userAds={userAds[0]}
+                        oneditPhones={this.preparePhonesAdForEdit.bind(this)}
+                        ondeletePhones={this.confirmDeletePhonesAd.bind(this)}
+                        onseemorePhones={this.preparePhoneAdForSingleView.bind(this)}
+                        oneditPcs={this.preparePcAdForEdit.bind(this)}
+                        ondeletePcs={this.confirmDeletePcAd.bind(this)}
+                        onseemorePcs={this.preparePcAdForSingleView.bind(this)}
+                        oneditOther={this.prepareOtherAdForEdit.bind(this)}
+                        ondeleteOther={this.confirmDeleteOtherAd.bind(this)}
+                        onseemoreOther={this.prepareAdForSingleView.bind(this)}
                     />
                 );
             }
