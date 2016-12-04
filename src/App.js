@@ -18,6 +18,7 @@ import EditAdView from './Views/EditAdView'
 import DeleteAdView from './Views/DeleteAdView'
 import CreateAdView from './Views/CreateAdView'
 import SingleAdView from './Views/SingleAdView'
+import UserAdsView from './Views/UserAdsView'
 
 //Importing Kinvey Requesters
 import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
@@ -46,6 +47,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                         phonesClicked={this.showPhonesView.bind(this)}
                         pcsClicked={this.showPcsView.bind(this)}
                         otherClicked={this.showOthersView.bind(this)}
+                        userAdsClicked={this.showUserAdView.bind(this)}
                         createAdClicked={this.showCreateAdView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
                     />
@@ -157,7 +159,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
 
         function registerSuccess(userInfo) {
             this.saveAuthInSession(userInfo);
-            this.showBooksView();
+            this.showHomeView();
             this.showInfo("User registration successful.");
         }
     }
@@ -489,10 +491,23 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             }
         }
 
-
-
-
-
-
+        showUserAdView()
+        {
+            $.when(PhoneAdsRequester.loadPhoneAds(),
+            PcAdsRequester.loadPcAds(),
+            OtherAdsRequester.loadAds())
+                .done(loadAdSuccess.bind(this));
+            function loadAdSuccess(userPhonesAds,userPcAds,userAds) {
+                console.dir(userPcAds);
+                this.showInfo("Ads are loaded.");
+                this.showView(
+                    <UserAdsView
+                        userPhoneAds={userPhonesAds[0]}
+                        userPcAds={userPcAds[0]}
+                        userAds={userAds[0]}
+                    />
+                );
+            }
+        }
 }
 
