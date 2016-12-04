@@ -17,6 +17,7 @@ import OtherAdsView from './Views/OtherAdsView'
 import EditAdView from './Views/EditAdView'
 import DeleteAdView from './Views/DeleteAdView'
 import CreateAdView from './Views/CreateAdView'
+import SingleAdView from './Views/SingleAdView'
 
 //Importing Kinvey Requesters
 import LoginRegisterRequester from './KinveyRequester/LoginRegisterRequester'
@@ -145,6 +146,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             this.showHomeView();
         }
     }
+
     showRegisterView() {
         this.showView(<RegisterView onsubmit={this.register.bind(this)} />);
     }
@@ -172,6 +174,24 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                     phoneAds={phoneAds}
                     onedit={this.preparePhonesAdForEdit.bind(this)}
                     ondelete={this.confirmDeletePhonesAd.bind(this)}
+                    onseemore={this.preparePhoneAdForSingleView.bind(this)}
+                />
+            );
+        }
+    }
+
+    preparePhoneAdForSingleView(adId){
+        PhoneAdsRequester.findPhoneAdById(adId)
+            .then(loadPhonesAdForSingleView.bind(this));
+
+        function loadPhonesAdForSingleView(adInfo) {
+            this.showView(
+                <SingleAdView
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
                 />
             );
         }
@@ -247,6 +267,24 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                     pcAds={pcAds}
                     onedit={this.preparePcAdForEdit.bind(this)}
                     ondelete={this.confirmDeletePcAd.bind(this)}
+                    onseemore={this.preparePcAdForSingleView.bind(this)}
+                />
+            );
+        }
+    }
+
+    preparePcAdForSingleView(adId){
+        PcAdsRequester.findPcAdById(adId)
+            .then(loadPcAdForSingleView.bind(this));
+
+        function loadPcAdForSingleView(adInfo) {
+            this.showView(
+                <SingleAdView
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
                 />
             );
         }
@@ -321,6 +359,24 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                     otherAds={otherAds}
                     onedit={this.prepareOtherAdForEdit.bind(this)}
                     ondelete={this.confirmDeleteOtherAd.bind(this)}
+                    onseemore={this.prepareAdForSingleView.bind(this)}
+                />
+            );
+        }
+    }
+
+    prepareAdForSingleView(adId){
+        OtherAdsRequester.findAdById(adId)
+            .then(loadAdForSingleView.bind(this));
+
+        function loadAdForSingleView(adInfo) {
+            this.showView(
+                <SingleAdView
+                    adId={adInfo._id}
+                    title={adInfo.title}
+                    description={adInfo.description}
+                    imageURL={adInfo.imageURL}
+                    phoneNumber={adInfo.phoneNumber}
                 />
             );
         }

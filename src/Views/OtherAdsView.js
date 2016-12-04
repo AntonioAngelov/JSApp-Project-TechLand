@@ -34,18 +34,24 @@ export default class OtherAdsView extends Component {
     }
 
     getActions(ad) {
-     if (ad._acl.creator === sessionStorage.getItem('userId'))
-     return (
-     <td>
-     <input type="button" value="Edit"
-     onClick={this.props.onedit.bind(this, ad._id)} />
-     &nbsp;
-     <input type="button" value="Delete"
-     onClick={this.props.ondelete.bind(this, ad._id)} />
-     </td>
-     );
-     else
-     return <td></td>;
+        if (ad._acl.creator === sessionStorage.getItem('userId'))
+            return (
+                <td>
+                    <input type="button" value="See More"
+                    onClick={this.props.onseemore.bind(this, ad._id)} />
+                    &nbsp;
+                    <input type="button" value="Edit"
+                           onClick={this.props.onedit.bind(this, ad._id)} />
+                    &nbsp;
+                    <input type="button" value="Delete"
+                           onClick={this.props.ondelete.bind(this, ad._id)} />
+                </td>
+            );
+        else
+            return (<td>
+                <input type="button" value="See More"
+                onClick={this.props.onseemore.bind(this, ad._id)} />
+            </td>);
      }
 }
 

@@ -98,3 +98,14 @@ div p{
   text-align: center;
   font-size: 100%;
 }
+
+.see-more img{
+  width:304px;
+  height:228px;
+  padding: 30px;
+}
+
+table td img{
+  width:200px;
+  height:120px;
+}

@@ -37,6 +37,9 @@ export default class PhoneAdsView extends Component {
         if (phoneAd._acl.creator === sessionStorage.getItem('userId'))
             return (
                 <td>
+                    <input type="button" value="See More"
+                           onClick={this.props.onseemore.bind(this, phoneAd._id)} />
+                    &nbsp;
                     <input type="button" value="Edit"
                            onClick={this.props.onedit.bind(this, phoneAd._id)} />
                     &nbsp;
@@ -45,7 +48,11 @@ export default class PhoneAdsView extends Component {
                 </td>
             );
         else
-            return <td></td>;
+            return (
+                <td>
+                    <input type="button" value="See More"
+                           onClick={this.props.onseemore.bind(this, phoneAd._id)} />
+                </td>);
     }
 }
 
