@@ -263,7 +263,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             .then(loadPcAdsSuccess.bind(this));
 
         function loadPcAdsSuccess(pcAds) {
-            this.showInfo("PcAds loaded.");
+            this.showInfo("Pc/laptop adverts loaded.");
             this.showView(
                 <PcAdsView
                     pcAds={pcAds}
@@ -355,7 +355,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             .then(loadOtherAdsSuccess.bind(this));
 
         function loadOtherAdsSuccess(otherAds) {
-            this.showInfo("OtherAds loaded.");
+            this.showInfo("Other adverts loaded.");
             this.showView(
                 <OtherAdsView
                     otherAds={otherAds}
@@ -449,6 +449,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             userId: null
         });
 
+        this.showInfo('Logout successful.')
         this.showHomeView();
     }
      //Create View
@@ -465,7 +466,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                 function createPhoneAdSuccess()
                 {
                     this.showPhonesView();
-                    this.showInfo("Ad created");
+                    this.showInfo("Advert created");
                 }
            }
 
@@ -477,7 +478,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                 function createPcAdSuccess()
                 {
                     this.showPcsView();
-                    this.showInfo("Ad created");
+                    this.showInfo("Advert created");
                 }
             }
             else {
@@ -486,7 +487,7 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
                 function createOtherAdSuccess()
                 {
                     this.showOthersView();
-                    this.showInfo("Ad created");
+                    this.showInfo("Advert created");
                 }
             }
         }

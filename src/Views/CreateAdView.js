@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class CreateBookView extends Component {
     render() {
         return (
-            <form className="create-app-form" onSubmit={this.submitForm.bind(this)}>
+            <form className="create-ad-form" onSubmit={this.submitForm.bind(this)}>
                 <h1>Create Ad</h1>
                 <label>
                     <div>Section:</div>
@@ -24,7 +24,7 @@ export default class CreateBookView extends Component {
                            ref={e => this.titleField = e} />
                 </label>
                 <label>
-                    <div>Description:</div>
+                    <div>Specifications:</div>
                     <textarea type="text" name="addDescription" rows="7" required
                            ref={e => this.descriptionField = e} />
                 </label>

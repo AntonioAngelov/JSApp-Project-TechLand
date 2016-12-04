@@ -20,7 +20,7 @@ export default class OtherAdsView extends Component {
                     <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Specification</th>
+                        <th>Specifications</th>
                         <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class EditAdView extends Component {
     render() {
         return (
-            <form className="edit-add-form" onSubmit={this.submitForm.bind(this)}>
+            <form className="edit-ad-form" onSubmit={this.submitForm.bind(this)}>
                 <h1>Edit Ad</h1>
                 <label>
                     <div>Image:</div>
@@ -18,7 +18,7 @@ export default class EditAdView extends Component {
                            ref={e => this.titleField = e} />
                 </label>
                 <label>
-                    <div>Description:</div>
+                    <div>Specifications:</div>
                     <textarea name="description" rows="10" required
                               defaultValue={this.props.description}
                               ref={e => this.descriptionField = e} />
