@@ -499,7 +499,6 @@ import OtherAdsRequester from './KinveyRequester/OtherAdsRequester'
             OtherAdsRequester.loadAds())
                 .done(loadAdSuccess.bind(this));
             function loadAdSuccess(userPhonesAds,userPcAds,userAds) {
-                console.dir(userPcAds);
                 this.showInfo("Ads are loaded.");
                 this.showView(
                     <UserAdsView

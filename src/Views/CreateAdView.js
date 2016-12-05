@@ -30,7 +30,7 @@ export default class CreateBookView extends Component {
                 </label>
                 <label>
                     <div>Phone Number:</div>
-                    <input type="text" name="phoneNumber"
+                    <input type="text" name="phoneNumber" required
                               ref={e => this.phoneNumberField = e} />
                 </label>
                 <div>

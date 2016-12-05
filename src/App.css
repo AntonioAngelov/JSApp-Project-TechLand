@@ -35,12 +35,14 @@ table {
   width: 80%;
 }
 input[type=button] {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
+  color: #FFF;
+  background-color: #0052cc;
+  font-weight: bold;
+  border-radius: 30px;
+  font-size: 120%;
 }
 input[type=button]:hover {
-  background-color: #ccff99;
+  background-color: darkred;
 }
 
 table th {
@@ -200,3 +202,5 @@ table td img{
   width:200px;
   height:120px;
 }
+
+
